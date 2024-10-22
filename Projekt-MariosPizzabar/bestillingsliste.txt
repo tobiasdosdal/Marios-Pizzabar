@@ -1,0 +1,2 @@
+Margherita,Tomat, Ost, Basilikum,85
+Pepperoni,Tomat, Ost, Pepperoni,95
