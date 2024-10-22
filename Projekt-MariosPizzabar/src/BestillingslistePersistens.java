@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class BestillingslistePersistens {
     public static void writeBestilling(ArrayList<Bestillingsliste> bestillingsliste) {
-        String BestillingFile = "bestillingsliste.txt";
+        String BestillingFile = "Projekt-MariosPizzabar/bestillingsliste.txt";
 
         try (FileWriter writer = new FileWriter(BestillingFile, false)) {
             for (Bestillingsliste p : bestillingsliste) {
@@ -26,7 +26,7 @@ public class BestillingslistePersistens {
         ArrayList<Bestillingsliste> bestillinger = new ArrayList<>();
         String komma = ",";
         String line = "";
-        String BestillingFile = "bestillingsliste.txt";
+        String BestillingFile = "Projekt-MariosPizzabar/bestillingsliste.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(BestillingFile))) {
             while ((line = br.readLine()) != null) {
