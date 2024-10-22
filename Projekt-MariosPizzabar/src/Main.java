@@ -10,21 +10,29 @@ public class Main {
         Bestillingsliste bestilling2 = new Bestillingsliste("Pepperoni", "Tomat, Ost, Pepperoni", 95);
 
         // Add orders to ArrayList
-        bestillinger.add(bestilling1);
-        bestillinger.add(bestilling2);
+        //bestillinger.add(bestilling1);
+        //bestillinger.add(bestilling2);
 
         // Write orders to file
-        writeBestillingToFile(bestillinger);
+        //writeBestillingToFile(bestillinger);
 
         // Read and display orders from file
-        readBestillingFromFile();
+        System.out.println("\nLæser produkter fra fil:");
+        ArrayList<Bestillingsliste> loadedBestillinger = readBestillingFromFile();
+
+        // Print loaded orders to verify
+        for (Bestillingsliste bestilling : loadedBestillinger) {
+            System.out.println(bestilling.getNavn() + " - " +
+                    bestilling.getIngredienser() + " - " +
+                    bestilling.getPris() + " kr");
+        }
     }
 
     public static void writeBestillingToFile(ArrayList<Bestillingsliste> bestillingsliste) {
         BestillingslistePersistens.writeBestilling(bestillingsliste);
     }
 
-    public static void readBestillingFromFile() {
-        BestillingslistePersistens.readBestilling();
+    public static ArrayList<Bestillingsliste> readBestillingFromFile() {
+        return BestillingslistePersistens.readBestilling();
     }
 }
