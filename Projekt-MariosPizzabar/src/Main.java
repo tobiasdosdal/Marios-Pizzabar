@@ -3,52 +3,52 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Create ArrayList to store orders
+        // Opret ArrayList til at gemme bestillinger
         ArrayList<Bestillingsliste> bestillinger = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
-        // Load existing orders from file
-        System.out.println("\nLæser produkter fra fil:");
-        bestillinger = readBestillingFromFile();
+        // Indlæs eksisterende bestillinger fra fil
+        System.out.println("\nIndlæser produkter fra fil:");
+        bestillinger = læsBestillingerFraFil();
 
-        // Print loaded orders
+        // Vis indlæste bestillinger
         for (Bestillingsliste bestilling : bestillinger) {
             System.out.println(bestilling.getNavn() + " - " +
                     bestilling.getIngredienser() + " - " +
                     bestilling.getPris() + " kr");
         }
 
-        // Start order system
+        // Start bestillingssystem
         while (true) {
             System.out.println("\n=== Bestillingssystem ===");
-            System.out.println("1. Opprett ny bestilling");
+            System.out.println("1. Opret ny bestilling");
             System.out.println("2. Vis alle bestillinger");
-            System.out.println("3. Lagre bestillinger");
-            System.out.println("4. Avslutt");
-            System.out.print("Velg en handling (1-4): ");
+            System.out.println("3. Gem bestillinger");
+            System.out.println("4. Afslut");
+            System.out.print("Vælg en handling (1-4): ");
 
             int valg = scanner.nextInt();
-            scanner.nextLine(); // Clear buffer
+            scanner.nextLine(); // Ryd buffer
 
             switch (valg) {
                 case 1:
-                    // Create new order
-                    System.out.print("Skriv inn navn på retten: ");
+                    // Opret ny bestilling
+                    System.out.print("Indtast navn på retten: ");
                     String navn = scanner.nextLine();
 
-                    System.out.print("Skriv inn ingredienser: ");
+                    System.out.print("Indtast ingredienser: ");
                     String ingredienser = scanner.nextLine();
 
-                    System.out.print("Skriv inn pris: ");
+                    System.out.print("Indtast pris: ");
                     int pris = scanner.nextInt();
 
                     Bestillingsliste nyBestilling = new Bestillingsliste(navn, ingredienser, pris);
                     bestillinger.add(nyBestilling);
-                    System.out.println("Bestilling lagt til!");
+                    System.out.println("Bestilling tilføjet!");
                     break;
 
                 case 2:
-                    // Show all orders
+                    // Vis alle bestillinger
                     System.out.println("\nAlle bestillinger:");
                     for (Bestillingsliste bestilling : bestillinger) {
                         System.out.println(bestilling.getNavn() + " - " +
@@ -58,28 +58,28 @@ public class Main {
                     break;
 
                 case 3:
-                    // Save to file
-                    writeBestillingToFile(bestillinger);
-                    System.out.println("Bestillinger lagret til fil.");
+                    // Gem til fil
+                    skrivBestillingTilFil(bestillinger);
+                    System.out.println("Bestillinger gemt til fil.");
                     break;
 
                 case 4:
-                    // Exit
-                    System.out.println("Avslutter programmet...");
+                    // Afslut
+                    System.out.println("Afslutter programmet...");
                     scanner.close();
                     return;
 
                 default:
-                    System.out.println("Ugyldig valg. Prøv igjen.");
+                    System.out.println("Ugyldigt valg. Prøv igen.");
             }
         }
     }
 
-    public static void writeBestillingToFile(ArrayList<Bestillingsliste> bestillingsliste) {
+    public static void skrivBestillingTilFil(ArrayList<Bestillingsliste> bestillingsliste) {
         BestillingslistePersistens.writeBestilling(bestillingsliste);
     }
 
-    public static ArrayList<Bestillingsliste> readBestillingFromFile() {
+    public static ArrayList<Bestillingsliste> læsBestillingerFraFil() {
         return BestillingslistePersistens.readBestilling();
     }
 }
