@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class BestillingslistePersistens {
     private static final String MENU_FILE = "Projekt-MariosPizzabar/src/resources/menu.txt";
     //private static final String MENU_FILE = "menu.txt";
-    private static final String BESTILLING_FILE = "resources/bestillinger.txt";
+    private static final String BESTILLING_FILE = "Projekt-MariosPizzabar/src/resources/bestillinger.txt";
 
     public static ArrayList<Bestillingsliste> readMenu() {
         ArrayList<Bestillingsliste> menu = new ArrayList<>();
@@ -25,9 +25,12 @@ public class BestillingslistePersistens {
     }
 
     public static void writeBestilling(ArrayList<Bestillingsliste> bestillinger) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(BESTILLING_FILE))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(BESTILLING_FILE, true))) {
             for (Bestillingsliste bestilling : bestillinger) {
-                bw.write(bestilling.getNavn() + "," + bestilling.getIngredienser() + "," + bestilling.getPris());
+                bw.newLine();
+                bw.write("========( ny ordre )========");
+                bw.newLine();
+                bw.write(bestilling.getNavn() + "," + bestilling.getPris());
                 bw.newLine();
             }
         } catch (IOException e) {

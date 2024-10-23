@@ -43,6 +43,7 @@ public class Main {
                         valgtPizza.getPris()
                 ));
                 System.out.println("Bestilling tilføjet!");
+                BestillingslistePersistens.writeBestilling(bestillinger);
             } else {
                 System.out.println("Ugyldigt pizzanavn!"); // Viser fejlmeddelelse
             }
