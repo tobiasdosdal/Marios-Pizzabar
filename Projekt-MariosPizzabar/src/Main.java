@@ -74,7 +74,7 @@ public class Main {
             }
 
             // Gem hele bestillingen på én gang
-            BestillingslistePersistens.writeFullOrder(aktuelBestilling);
+            BestillingslistePersistens.writeFullOrder(aktuelBestilling, totalPris);
 
             // Vis ordreopsummering
             System.out.println("\n=== Ordreopsummering ===");
