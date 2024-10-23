@@ -1,48 +1,37 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class BestillingslistePersistens {
-    public static void writeBestilling(ArrayList<Bestillingsliste> bestillingsliste) {
-        String BestillingFile = "Projekt-MariosPizzabar/bestillingsliste.txt";
+    private static final String MENU_FILE = "Projekt-MariosPizzabar/src/resources/menu.txt";
+    //private static final String MENU_FILE = "menu.txt";
+    private static final String BESTILLING_FILE = "resources/bestillinger.txt";
 
-        try (FileWriter writer = new FileWriter(BestillingFile, false)) {
-            for (Bestillingsliste p : bestillingsliste) {
-                String navn = p.getNavn();
-                String ingredienser = p.getIngredienser();
-                int pris = p.getPris();
-
-                writer.append(navn).append(",").append(ingredienser).append(",").append(String.valueOf(pris)).append("\n");
+    public static ArrayList<Bestillingsliste> readMenu() {
+        ArrayList<Bestillingsliste> menu = new ArrayList<>();
+        System.out.println("In read menu");
+        try (BufferedReader br = new BufferedReader(new FileReader(MENU_FILE))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String navn = parts[0].trim();
+                String ingredienser = parts[1].trim();
+                double pris = Double.parseDouble(parts[2].trim());
+                menu.add(new Bestillingsliste(navn, ingredienser, pris));
             }
-            System.out.println("Bestillingsliste file written successfully.");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Fejl ved indlæsning af menu: " + e.getMessage());
         }
+        return menu;
     }
 
-    public static ArrayList<Bestillingsliste> readBestilling() {
-        ArrayList<Bestillingsliste> bestillinger = new ArrayList<>();
-        String komma = ",";
-        String line = "";
-        String BestillingFile = "Projekt-MariosPizzabar/bestillingsliste.txt";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(BestillingFile))) {
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(komma);
-                if(data.length >= 3) {
-                    Bestillingsliste bestilling = new Bestillingsliste(
-                            data[0],                    // navn
-                            data[1],                    // ingredienser
-                            Integer.parseInt(data[2])   // pris
-                    );
-                    bestillinger.add(bestilling);
-                }
+    public static void writeBestilling(ArrayList<Bestillingsliste> bestillinger) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(BESTILLING_FILE))) {
+            for (Bestillingsliste bestilling : bestillinger) {
+                bw.write(bestilling.getNavn() + "," + bestilling.getIngredienser() + "," + bestilling.getPris());
+                bw.newLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Fejl ved gemning af bestillinger: " + e.getMessage());
         }
-        return bestillinger;
     }
 }

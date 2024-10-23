@@ -1,18 +1,12 @@
 public class Bestillingsliste {
     private String navn;
     private String ingredienser;
-    private int pris;
+    private double pris;
 
-    // Constructor
-    public Bestillingsliste(String navn, String ingredienser, int pris) {
+    public Bestillingsliste(String navn, String ingredienser, double pris) {
         this.navn = navn;
         this.ingredienser = ingredienser;
         this.pris = pris;
-    }
-
-    // Getters
-    public int getPris() {
-        return pris;
     }
 
     public String getNavn() {
@@ -23,16 +17,7 @@ public class Bestillingsliste {
         return ingredienser;
     }
 
-    // Setters
-    public void setPris(int pris) {
-        this.pris = pris;
-    }
-
-    public void setNavn(String navn) {
-        this.navn = navn;
-    }
-
-    public void setIngredienser(String ingredienser) {
-        this.ingredienser = ingredienser;
+    public double getPris() {
+        return pris;
     }
 }
