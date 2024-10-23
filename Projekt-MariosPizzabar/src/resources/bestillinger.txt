@@ -7,3 +7,19 @@ Mafia,61.0
 
 ========( ny ordre )========
 Mafia,61.0
+
+========( ny ordre )========
+Dennis,65.0
+
+========( ny ordre )========
+Mafia,61.0
+
+========( ny ordre )========
+Hawaii,61.0
+
+========( ny ordre )========
+Bertil Special,77.0
+
+========( ny ordre )========
+Mafia,61.0
+Hawaii,61.0

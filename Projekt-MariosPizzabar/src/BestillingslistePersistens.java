@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class BestillingslistePersistens {
     private static final String MENU_FILE = "Projekt-MariosPizzabar/src/resources/menu.txt";
-    //private static final String MENU_FILE = "menu.txt";
     private static final String BESTILLING_FILE = "Projekt-MariosPizzabar/src/resources/bestillinger.txt";
 
     public static ArrayList<Bestillingsliste> readMenu() {
@@ -35,6 +34,20 @@ public class BestillingslistePersistens {
             }
         } catch (IOException e) {
             System.out.println("Fejl ved gemning af bestillinger: " + e.getMessage());
+        }
+    }
+
+    public static void writeFullOrder(ArrayList<Bestillingsliste> order) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(BESTILLING_FILE, true))) {
+            bw.newLine();
+            bw.write("========( ny ordre )========");
+            bw.newLine();
+            for (Bestillingsliste item : order) {
+                bw.write(item.getNavn() + "," + item.getPris());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
     }
 }
