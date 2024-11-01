@@ -112,4 +112,22 @@ public class BestillingslistePersistens {
             System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
     }
+
+
+    // gem opdaterede priser i menu
+    public static void skrivMenu(ArrayList < Bestillingsliste > menu)
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(MENU_FILE)))
+        {
+            for (Bestillingsliste pizza : menu)
+            {
+                bw.write(pizza.getNavn() + "," + pizza.getIngredienser() + "," + pizza.getPris());
+                bw.newLine();
+            }
+        }
+        catch (IOException e)
+        {
+            System.out.println("Fejl ved gem af menu: " + e.getMessage());
+        }
+    }
 }
