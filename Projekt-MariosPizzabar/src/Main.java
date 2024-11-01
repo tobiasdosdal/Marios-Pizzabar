@@ -109,16 +109,14 @@ public class Main {
     {
         System.out.println("\n=== Marker pizza som færdig ===");
 
-        // Ingen pizza bestilling
-        if (bestillinger.isEmpty())
-        {
+        // Hvis ingen pizza bestilling
+        if (bestillinger.isEmpty()) {
             System.out.println("Ingen pizzaer at markere");
             return;
         }
 
         // Hvis der er bestillinger
-        for (int i = 0; i < bestillinger.size(); i++)
-        {
+        for (int i = 0; i < bestillinger.size(); i++) {
             System.out.println((i + 1) + ". " + bestillinger.get(i).getNavn());
         }
 
@@ -126,8 +124,7 @@ public class Main {
         int valg = scanner.nextInt();
         scanner.nextLine();
 
-        if (valg < 1 || valg > bestillinger.size())
-        {
+        if (valg < 1 || valg > bestillinger.size()) {
             System.out.println("Ugyldigt valg");
             return;
         }
@@ -141,23 +138,21 @@ public class Main {
     private void bekraeftBetaling()
     {
         System.out.println("\n=== Bekræft Betaling ===");
-        if (bestillinger.isEmpty())
-        {
+        if (bestillinger.isEmpty()) {
             System.out.println("Ingen bestillinger at betale for");
             return;
         }
 
-        for (int i = 0; i < bestillinger.size(); i++)
-        {
+        for (int i = 0; i < bestillinger.size(); i++) {
             System.out.println((i + 1) + ". " + bestillinger.get(i).getNavn() + " - " + bestillinger.get(i).getPris() + " kr");
         }
+
         System.out.print("\nVælg bestilling der skal bekræftes (1-" + bestillinger.size() + "): ");
         int valg = scanner.nextInt();
         scanner.nextLine();
 
 
-        if (valg < 1 || valg > bestillinger.size())
-        {
+        if (valg < 1 || valg > bestillinger.size()) {
             System.out.println("Ugyldigt valg.");
             return;
         }
@@ -220,8 +215,7 @@ public class Main {
         int valg = scanner.nextInt();
         scanner.nextLine();
 
-        if (valg < 1 || valg > menu.size())
-        {
+        if (valg < 1 || valg > menu.size()) {
             System.out.println("Ugyldigt valg.");
             return;
         }
@@ -235,12 +229,11 @@ public class Main {
             nyPris = scanner.nextDouble();
             scanner.nextLine();
 
-            if (nyPris > 0)
-            {
+            if (nyPris > 0) {
                 break;
             }
-            else
-            {
+
+            else {
                 System.out.println("Pris skal være et positivt tal");
             }
         }
